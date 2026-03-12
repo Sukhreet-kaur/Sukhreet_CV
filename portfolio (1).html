@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sukhreet Kaur — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..60,300;12..60,400;12..60,500;12..60,600;12..60,700;12..60,800&family=Kode+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#02020a;--panel:#080810;--panel2:#0e0e1c;--c:#00f5d4;--y:#ffe500;--p:#bf5af2;--g:#32d74b;--o:#ffa116;--text:#eeeef5;--muted:#52526e;--border:rgba(0,245,212,.09);--border2:rgba(255,229,0,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Bricolage Grotesque',sans-serif;overflow-x:hidden;cursor:none;}
+body::before{content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.4;}
+#cur{width:10px;height:10px;background:var(--c);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;box-shadow:0 0 12px var(--c),0 0 24px rgba(0,245,212,.4);}
+#curR{width:32px;height:32px;border:1.5px solid rgba(0,245,212,.45);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;}
+#bgc{position:fixed;inset:0;z-index:0;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(2,2,10,.82);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);}
+.logo{font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:.15em;background:linear-gradient(90deg,var(--c),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:.68rem;color:var(--muted);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--c);}
+.nav-dl{padding:.5rem 1.2rem;background:transparent;border:1px solid var(--c);color:var(--c);font-family:'Kode Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:all .2s;}
+.nav-dl:hover{background:var(--c);color:var(--bg);box-shadow:0 0 18px rgba(0,245,212,.35);}
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:9rem 3rem 6rem;overflow:hidden;}
+.hero-tag{font-family:'Kode Mono',monospace;font-size:.68rem;color:var(--c);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:up .5s .1s forwards;}
+.hero-tag::before{content:'[';color:var(--y);}.hero-tag::after{content:']';color:var(--y);}
+.hero-h{font-family:'Bebas Neue',cursive;font-size:clamp(5.5rem,14vw,12rem);line-height:.86;letter-spacing:.03em;opacity:0;animation:up .6s .2s forwards;}
+.hero-h .ghost{display:block;-webkit-text-stroke:1.5px rgba(0,245,212,.2);color:transparent;}
+.hero-h .fill{display:block;background:linear-gradient(110deg,var(--c) 0%,var(--y) 45%,var(--p) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 40px rgba(0,245,212,.35));}
+.hero-sub{font-size:clamp(.9rem,1.6vw,1.1rem);color:var(--muted);font-weight:300;margin:1.6rem 0 .8rem;letter-spacing:.03em;opacity:0;animation:up .6s .3s forwards;}
+.hero-sub b{color:var(--text);font-weight:600;}
+.hero-p{max-width:500px;font-size:.85rem;line-height:1.9;color:var(--muted);margin-bottom:2.2rem;opacity:0;animation:up .6s .35s forwards;}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;opacity:0;animation:up .6s .4s forwards;}
+.btnA{padding:.85rem 2rem;background:linear-gradient(135deg,var(--c),var(--y));color:var(--bg);font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:transform .2s,filter .2s;cursor:pointer;}
+.btnA:hover{transform:translateY(-3px);filter:brightness(1.12) drop-shadow(0 8px 20px rgba(0,245,212,.4));}
+.btnB{padding:.85rem 2rem;background:transparent;border:1px solid rgba(0,245,212,.25);color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:all .2s;}
+.btnB:hover{border-color:var(--c);color:var(--c);transform:translateY(-3px);}
+.live-dot{display:inline-block;width:7px;height:7px;background:var(--g);border-radius:50%;animation:pdot 2s infinite;flex-shrink:0;}
+@keyframes pdot{0%,100%{box-shadow:0 0 0 0 rgba(50,215,75,.5);}50%{box-shadow:0 0 0 6px rgba(50,215,75,0);}}
+/* TICKER */
+.ticker-wrap{position:absolute;bottom:3.5rem;left:0;right:0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.55rem 0;opacity:0;animation:up .5s .8s forwards;}
+.ticker{display:flex;gap:2.5rem;animation:tick 32s linear infinite;white-space:nowrap;}
+.ticker s{text-decoration:none;font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.ticker s b{color:var(--c);}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* STATS BAND */
+.stats-band{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--border);}
+.sb{padding:2rem;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background .3s;}
+.sb:last-child{border-right:none;}.sb:hover{background:rgba(0,245,212,.025);}
+.sb::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c),var(--y));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.sb:hover::before{transform:scaleX(1);}
+.sb-n{font-family:'Bebas Neue',cursive;font-size:2.8rem;letter-spacing:.04em;line-height:1;background:linear-gradient(135deg,var(--c),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sb-l{font-size:.58rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:.3rem;}
+/* SECTION */
+.sw{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:7rem 3rem;}
+.sl{font-family:'Kode Mono',monospace;font-size:.63rem;color:var(--c);letter-spacing:.25em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.7rem;}
+.sl em{color:var(--y);}
+.sh{font-family:'Bebas Neue',cursive;font-size:clamp(2.8rem,5vw,4.8rem);letter-spacing:.05em;line-height:.92;margin-bottom:3rem;}
+.sh i{font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:300;color:var(--muted);font-size:55%;display:block;letter-spacing:.01em;}
+.divline{position:relative;z-index:1;height:1px;background:var(--border);margin:0 3rem;}
+/* ═══ LEETCODE SECTION ═══ */
+.lc-wrap{background:var(--panel);border:1px solid rgba(255,161,22,.2);padding:2.5rem;position:relative;overflow:hidden;margin-bottom:1.5rem;}
+.lc-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ffa116,#ffcf5c,#ffa116);background-size:200%;animation:shimmer 3s linear infinite;}
+@keyframes shimmer{from{background-position:-200%;}to{background-position:200%;}}
+.lc-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem;}
+.lc-brand{display:flex;align-items:center;gap:1rem;}
+.lc-name{font-family:'Bebas Neue',cursive;font-size:1.8rem;letter-spacing:.1em;color:#ffa116;}
+.lc-handle{font-family:'Kode Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:.2rem;}
+.lc-badges-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;}
+.lc-live{display:flex;align-items:center;gap:.5rem;padding:.3rem .9rem;background:rgba(50,215,75,.08);border:1px solid rgba(50,215,75,.25);font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--g);letter-spacing:.1em;}
+/* Main stats layout */
+.lc-body{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start;margin-bottom:2rem;}
+/* Donut ring */
+.lc-donut-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.lc-donut{position:relative;width:160px;height:160px;}
+.lc-donut svg{transform:rotate(-90deg);}
+.lc-donut-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.lc-donut-num{font-family:'Bebas Neue',cursive;font-size:2.8rem;color:#ffa116;line-height:1;text-shadow:0 0 30px rgba(255,161,22,.4);}
+.lc-donut-sub{font-family:'Kode Mono',monospace;font-size:.55rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.15rem;}
+.lc-donut-total{font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.08em;}
+/* Diff bars */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.dc{background:var(--panel2);border:1px solid;padding:1.3rem;}
+.dc.easy{border-color:rgba(0,184,163,.25);}.dc.med{border-color:rgba(255,192,30,.25);}.dc.hard{border-color:rgba(255,55,95,.25);}
+.dc-lbl{font-family:'Kode Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem;}
+.easy .dc-lbl{color:#00b8a3;}.med .dc-lbl{color:#ffc01e;}.hard .dc-lbl{color:#ff375f;}
+.dc-n{font-family:'Bebas Neue',cursive;font-size:2.4rem;letter-spacing:.04em;line-height:1;margin-bottom:.2rem;}
+.dc-frac{font-family:'Kode Mono',monospace;font-size:.58rem;color:var(--muted);margin-bottom:.6rem;}
+.easy .dc-n{color:#00b8a3;}.med .dc-n{color:#ffc01e;}.hard .dc-n{color:#ff375f;}
+.bar-bg{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
+.bar{height:100%;border-radius:2px;transition:width 1.5s cubic-bezier(.16,1,.3,1);width:0;}
+.easy .bar{background:linear-gradient(90deg,#00b8a3,#00f5d4);}.med .bar{background:linear-gradient(90deg,#ffc01e,#ffe500);}.hard .bar{background:linear-gradient(90deg,#ff375f,#ff6b6b);}
+/* Meta row */
+.lc-meta{display:flex;gap:1rem;flex-wrap:wrap;}
+.lm{flex:1;min-width:90px;padding:.9rem 1.1rem;background:var(--panel2);border:1px solid var(--border);display:flex;flex-direction:column;gap:.2rem;}
+.lm-k{font-family:'Kode Mono',monospace;font-size:.52rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;}
+.lm-v{font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:.06em;color:var(--text);}
+/* Activity heatmap */
+.lc-activity{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+.lc-act-title{font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem;}
+.lc-act-title span{color:var(--c);}
+.heat-grid{display:flex;gap:3px;overflow-x:auto;padding-bottom:.3rem;}
+.heat-col{display:flex;flex-direction:column;gap:3px;}
+.heat-cell{width:10px;height:10px;border-radius:2px;background:rgba(255,255,255,.04);transition:transform .1s;}
+.heat-cell:hover{transform:scale(1.4);}
+.heat-cell.l1{background:rgba(0,245,212,.15);}.heat-cell.l2{background:rgba(0,245,212,.35);}.heat-cell.l3{background:rgba(0,245,212,.6);}.heat-cell.l4{background:rgba(0,245,212,.9);}
+/* LeetCode badges */
+.lc-badges-section{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+.lc-badge-chips{display:flex;gap:.6rem;flex-wrap:wrap;}
+.lc-badge-chip{display:flex;align-items:center;gap:.5rem;padding:.4rem .9rem;background:rgba(255,161,22,.06);border:1px solid rgba(255,161,22,.2);font-family:'Kode Mono',monospace;font-size:.62rem;color:#ffa116;letter-spacing:.08em;}
+/* ═══ HACKERRANK ═══ */
+.hr-wrap{background:var(--panel);border:1px solid rgba(0,234,182,.2);padding:2.5rem;position:relative;overflow:hidden;}
+.hr-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00eab6,#00d9a7);}
+.hr-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem;}
+.hr-name{font-family:'Bebas Neue',cursive;font-size:1.8rem;letter-spacing:.1em;color:#00eab6;}
+.hr-handle{font-family:'Kode Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:.2rem;}
+.hr-body{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;}
+/* HR badges hexagons */
+.hr-badges-section{}
+.hr-badges-title{font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;}
+.hr-badges-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+.hbadge{display:flex;flex-direction:column;align-items:center;gap:.4rem;}
+.hex{width:52px;height:52px;clip-path:polygon(50% 0%,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);display:flex;align-items:center;justify-content:center;font-family:'Kode Mono',monospace;font-size:.52rem;text-align:center;font-weight:700;letter-spacing:.04em;line-height:1.2;}
+.hex.gold{background:linear-gradient(135deg,#ffa116,#ffcf5c);}
+.hex.silver{background:linear-gradient(135deg,#a0a0b0,#c8c8d8);}
+.hex.ps{background:linear-gradient(135deg,#e8906b,#ffb894);}
+.hex.green{background:linear-gradient(135deg,#00eab6,#00b8a3);}
+.hex span{color:var(--bg);font-size:.45rem;}
+.stars{font-size:.6rem;letter-spacing:.05em;}
+.stars.gold{color:#ffa116;}.stars.silver{color:#a0a0b0;}.stars.green{color:#00eab6;}
+.hb-name{font-family:'Kode Mono',monospace;font-size:.52rem;color:var(--muted);letter-spacing:.05em;text-align:center;}
+/* HR certs */
+.hr-certs-title{font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;}
+.hr-cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.hr-cert{padding:.8rem 1rem;background:rgba(0,234,182,.05);border:1px solid rgba(0,234,182,.2);display:flex;align-items:center;gap:.7rem;text-decoration:none;transition:all .2s;}
+.hr-cert:hover{background:rgba(0,234,182,.1);border-color:rgba(0,234,182,.4);transform:translateX(3px);}
+.hr-cert-dot{width:6px;height:6px;background:#00eab6;border-radius:50%;flex-shrink:0;}
+.hr-cert-info{}
+.hr-cert-name{font-size:.74rem;font-weight:600;color:var(--text);margin-bottom:.12rem;}
+.hr-cert-status{font-family:'Kode Mono',monospace;font-size:.56rem;color:#00eab6;letter-spacing:.08em;}
+.hr-stats{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
+.hr-stat{background:var(--panel2);border:1px solid rgba(0,234,182,.12);padding:1rem;text-align:center;}
+.hr-stat-n{font-family:'Bebas Neue',cursive;font-size:2rem;color:#00eab6;line-height:1;}
+.hr-stat-l{font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem;}
+/* SKILLS */
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.sk-block{background:var(--panel);border:1px solid var(--border);padding:1.8rem;}
+.sk-title{font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--y);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--border2);}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;}
+.chip{padding:.32rem .8rem;font-size:.7rem;letter-spacing:.04em;border:1px solid rgba(0,245,212,.13);color:var(--text);transition:all .2s;cursor:default;}
+.chip:hover{border-color:var(--c);color:var(--c);background:rgba(0,245,212,.04);}
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.proj{background:var(--panel);border:1px solid var(--border);padding:2.4rem;position:relative;overflow:hidden;transition:transform .3s,border-color .3s;display:flex;flex-direction:column;}
+.proj::after{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;background:conic-gradient(from 0deg,transparent,rgba(0,245,212,.03) 60deg,transparent 120deg);animation:coneRot 10s linear infinite;opacity:0;transition:opacity .4s;}
+.proj:hover{transform:translateY(-5px);border-color:rgba(0,245,212,.35);}.proj:hover::after{opacity:1;}
+@keyframes coneRot{to{transform:rotate(360deg);}}
+.proj-id{font-family:'Kode Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.2em;margin-bottom:1.3rem;}
+.proj-name{font-family:'Bebas Neue',cursive;font-size:2rem;letter-spacing:.06em;margin-bottom:.2rem;}
+.proj-sub{font-size:.76rem;color:var(--muted);font-style:italic;font-weight:300;margin-bottom:1.3rem;}
+.ptags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.3rem;}
+.pt{font-family:'Kode Mono',monospace;font-size:.58rem;padding:.18rem .55rem;letter-spacing:.06em;}
+.pt.a{border:1px solid rgba(0,245,212,.2);color:var(--c);}.pt.b{border:1px solid rgba(255,229,0,.2);color:var(--y);}.pt.c{border:1px solid rgba(191,90,242,.2);color:var(--p);}
+.proj-ul{list-style:none;flex:1;}
+.proj-ul li{font-size:.77rem;color:var(--muted);line-height:1.75;padding:.22rem 0 .22rem 1.1rem;position:relative;}
+.proj-ul li::before{content:'▸';position:absolute;left:0;color:var(--c);font-size:.65rem;}
+.proj-foot{display:flex;gap:.7rem;margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid var(--border);}
+.plk{padding:.5rem 1.1rem;font-family:'Kode Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:all .2s;}
+.plk.live{background:rgba(0,245,212,.07);border:1px solid rgba(0,245,212,.25);color:var(--c);}
+.plk.live:hover{background:var(--c);color:var(--bg);box-shadow:0 0 18px rgba(0,245,212,.3);}
+/* EXP */
+.exp-card{background:var(--panel);border:1px solid var(--border);padding:2.4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;transition:border-color .3s;position:relative;overflow:hidden;}
+.exp-card:hover{border-color:rgba(0,245,212,.3);}
+.exp-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--c),var(--y));transform:scaleY(0);transform-origin:top;transition:transform .4s;}
+.exp-card:hover .exp-bar{transform:scaleY(1);}
+.exp-role{font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:.06em;margin-bottom:.25rem;}
+.exp-co{color:var(--c);font-size:.75rem;margin-bottom:1rem;font-family:'Kode Mono',monospace;}
+.exp-ul{list-style:none;}
+.exp-ul li{font-size:.78rem;color:var(--muted);padding:.28rem 0 .28rem 1.2rem;position:relative;line-height:1.7;}
+.exp-ul li::before{content:'→';position:absolute;left:0;color:var(--y);font-size:.68rem;}
+.exp-date{font-family:'Kode Mono',monospace;font-size:.63rem;color:var(--muted);letter-spacing:.1em;text-align:right;white-space:nowrap;}
+/* ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.ach{background:var(--panel);border:1px solid var(--border);padding:1.8rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color .3s,transform .25s;}
+.ach:hover{border-color:rgba(255,229,0,.3);transform:translateX(4px);}
+.ach-n{font-family:'Bebas Neue',cursive;font-size:2.8rem;color:rgba(255,229,0,.1);line-height:1;flex-shrink:0;}
+.ach-title{font-size:.92rem;font-weight:700;margin-bottom:.3rem;}
+.ach-detail{font-size:.74rem;color:var(--muted);line-height:1.65;}
+/* EDU */
+.edu-grid{display:grid;gap:1rem;}
+.edu{background:var(--panel);border:1px solid var(--border);padding:1.8rem 2.2rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.8rem;align-items:center;transition:border-color .25s;}
+.edu:hover{border-color:rgba(0,245,212,.3);}
+.edu-yr{font-family:'Bebas Neue',cursive;font-size:.85rem;letter-spacing:.12em;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);}
+.edu-deg{font-size:1rem;font-weight:700;margin-bottom:.25rem;}
+.edu-sch{font-family:'Kode Mono',monospace;font-size:.72rem;color:var(--c);margin-bottom:.18rem;}
+.edu-loc{font-size:.68rem;color:var(--muted);}
+.edu-g{font-family:'Bebas Neue',cursive;font-size:1.9rem;letter-spacing:.08em;background:linear-gradient(135deg,var(--c),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:right;}
+.edu-g small{display:block;font-size:.5rem;font-family:'Kode Mono',monospace;letter-spacing:.12em;color:var(--muted);-webkit-text-fill-color:var(--muted);}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.c-big{font-family:'Bebas Neue',cursive;font-size:clamp(3rem,6.5vw,6rem);line-height:.88;letter-spacing:.04em;}
+.c-big .g{display:block;-webkit-text-stroke:1.5px rgba(0,245,212,.2);color:transparent;}
+.c-big .f{display:block;background:linear-gradient(120deg,var(--c),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.c-links{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.c-links li a{display:flex;align-items:center;gap:.9rem;padding:.9rem 1.3rem;background:var(--panel);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:.78rem;transition:all .22s;}
+.c-links li a:hover{border-color:var(--c);background:rgba(0,245,212,.04);color:var(--c);}
+.c-ico{width:26px;height:26px;background:rgba(0,245,212,.06);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.c-lbl{font-family:'Kode Mono',monospace;font-size:.54rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.08rem;}
+.c-val{font-size:.76rem;}
+footer{position:relative;z-index:1;padding:1.4rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:'Kode Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em;}
+footer b{color:var(--c);}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.rvl{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease;}
+.rv.in,.rvl.in{opacity:1;transform:none;}
+@keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+/* spin */
+.sp-wrap{display:flex;align-items:center;gap:.8rem;padding:2rem;justify-content:center;}
+.spin{width:18px;height:18px;border:2px solid rgba(255,161,22,.2);border-top-color:#ffa116;border-radius:50%;animation:spinning .8s linear infinite;}
+@keyframes spinning{to{transform:rotate(360deg);}}
+/* ═══ ABOUT / SUMMARY ═══ */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;}
+.about-quote{font-family:'Bebas Neue',cursive;font-size:clamp(1.4rem,3vw,2.2rem);letter-spacing:.04em;line-height:1.15;color:var(--text);margin-bottom:1.5rem;}
+.about-quote span{background:linear-gradient(110deg,var(--c),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.about-body{font-size:.87rem;line-height:1.95;color:var(--muted);}
+.about-body p{margin-bottom:1rem;}
+.about-body b{color:var(--text);}
+.about-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}
+.about-tag{font-family:'Kode Mono',monospace;font-size:.62rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);letter-spacing:.08em;}
+.about-tag.hot{border-color:rgba(0,245,212,.3);color:var(--c);}
+/* quick info cards */
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.acard{background:var(--panel);border:1px solid var(--border);padding:1.4rem;position:relative;overflow:hidden;transition:border-color .2s;}
+.acard:hover{border-color:rgba(0,245,212,.3);}
+.acard-icon{font-size:1.5rem;margin-bottom:.6rem;}
+.acard-val{font-family:'Bebas Neue',cursive;font-size:1.6rem;letter-spacing:.06em;background:linear-gradient(135deg,var(--c),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.25rem;}
+.acard-lbl{font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+
+/* ═══ TRAINING ═══ */
+.training-grid{display:grid;gap:1.2rem;}
+.train-card{background:var(--panel);border:1px solid var(--border);padding:2rem 2.4rem;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;position:relative;overflow:hidden;transition:border-color .3s,transform .2s;}
+.train-card:hover{border-color:rgba(0,245,212,.35);transform:translateX(4px);}
+.train-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--c),var(--y));transform:scaleY(0);transform-origin:top;transition:transform .4s;}
+.train-card:hover .train-bar{transform:scaleY(1);}
+.train-logo{width:54px;height:54px;border-radius:50%;background:var(--panel2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.train-org{font-family:'Kode Mono',monospace;font-size:.62rem;color:var(--c);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem;}
+.train-title{font-family:'Bebas Neue',cursive;font-size:1.4rem;letter-spacing:.06em;margin-bottom:.3rem;}
+.train-desc{font-size:.76rem;color:var(--muted);line-height:1.6;}
+.train-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem;}
+.train-tag{font-family:'Kode Mono',monospace;font-size:.56rem;padding:.15rem .5rem;border:1px solid rgba(0,245,212,.18);color:var(--c);letter-spacing:.05em;}
+.train-date{font-family:'Kode Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.1em;white-space:nowrap;text-align:right;}
+
+/* ═══ AWARDS / CERTIFICATES ═══ */
+.awards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.award-card{background:var(--panel);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .25s;display:flex;flex-direction:column;gap:1rem;}
+.award-card:hover{border-color:rgba(255,229,0,.4);transform:translateY(-4px);}
+.award-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--y),var(--c));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.award-card:hover::before{transform:scaleX(1);}
+.award-trophy{font-size:2.2rem;}
+.award-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:'Kode Mono',monospace;font-size:.58rem;padding:.2rem .7rem;background:rgba(255,229,0,.07);border:1px solid rgba(255,229,0,.2);color:var(--y);letter-spacing:.08em;width:fit-content;}
+.award-title{font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:.06em;line-height:1.1;}
+.award-issuer{font-family:'Kode Mono',monospace;font-size:.65rem;color:var(--c);letter-spacing:.08em;}
+.award-desc{font-size:.76rem;color:var(--muted);line-height:1.65;}
+.award-date{font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;margin-top:auto;}
+
+/* Certs grid inside awards section */
+.certs-list{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:2rem;}
+.cert-item{background:var(--panel);border:1px solid var(--border);padding:1.2rem;text-decoration:none;display:block;position:relative;overflow:hidden;transition:transform .25s,border-color .25s;}
+.cert-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c),var(--y));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.cert-item:hover{transform:translateY(-3px);border-color:rgba(0,245,212,.3);}.cert-item:hover::after{transform:scaleX(1);}
+.cert-ico{font-size:1.1rem;margin-bottom:.5rem;}
+.cert-nm{font-size:.78rem;font-weight:700;margin-bottom:.2rem;color:var(--text);}
+.cert-is{font-family:'Kode Mono',monospace;font-size:.56rem;color:var(--c);letter-spacing:.08em;margin-bottom:.15rem;}
+.cert-dt{font-size:.6rem;color:var(--muted);}
+.cert-go{display:inline-flex;align-items:center;gap:.25rem;font-family:'Kode Mono',monospace;font-size:.52rem;color:var(--y);margin-top:.5rem;letter-spacing:.06em;}
+
+@media(max-width:900px){nav{padding:.9rem 1.5rem;}.nav-links{display:none;}.hero,.sw{padding:5.5rem 1.5rem 3.5rem;}.stats-band{grid-template-columns:repeat(3,1fr);}.skill-grid,.proj-grid,.ach-grid,.contact-grid,.diff-grid,.hr-body,.hr-cert-grid,.about-grid,.awards-grid,.about-cards,.certs-list{grid-template-columns:1fr;}.edu{grid-template-columns:1fr;}.edu-yr{writing-mode:horizontal-tb;transform:none;}.edu-g{text-align:left;}.lc-body{grid-template-columns:1fr;}.divline{margin:0 1.5rem;}footer{flex-direction:column;gap:.4rem;text-align:center;}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+<canvas id="bgc"></canvas>
+<nav>
+  <div class="logo">Sukhreet.Dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li><li><a href="#coding">LeetCode</a></li>
+    <li><a href="#projects">Projects</a></li><li><a href="#training">Training</a></li>
+    <li><a href="#awards">Awards</a></li><li><a href="#edu">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="Sukhreet_CV_compressed.pdf" download class="nav-dl">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download CV
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Software Developer &amp; Data Enthusiast</div>
+  <h1 class="hero-h"><span class="ghost">SUKHREET</span><span class="fill">KAUR</span></h1>
+  <p class="hero-sub"><b>Software Developer</b> . Building <b>Full-Stack Platforms</b> ·  <b>AI-Powered Apps</b> · <b>Android Apps Developer</b> .<b>Data Analytics</b></p>
+  <p class="hero-p">CSE student @ LPU with CGPA 9.2 — crafting scalable web applications, intelligent data pipelines, and solutions that make a difference. Rank 115,116 on LeetCode · First Prize CSE Research.</p>
+  <div class="hero-btns">
+    <a href="Sukhreet_CV_compressed.pdf" download class="btnA"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download CV</a>
+    <a href="#projects" class="btnB">View Projects <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="#contact" class="btnB">Get In Touch</a>
+  </div>
+  <div class="ticker-wrap"><div class="ticker">
+    <s>React.js</s><s>·</s><s>Node.js</s><s>·</s><s><b>616 Problems Solved</b></s><s>·</s><s>Python</s><s>·</s><s>MongoDB</s><s>·</s><s><b>CGPA 9.2</b></s><s>·</s><s>Tableau</s><s>·</s><s>Java</s><s>·</s><s><b>HackerRank 5★</b></s><s>·</s><s>Express.js</s><s>·</s><s><b>Rank 115,116</b></s><s>·</s><s><b>First Prize CSE</b></s><s>·</s><s>Max Streak 45</s><s>·</s>
+    <s>React.js</s><s>·</s><s>Node.js</s><s>·</s><s><b>616 Problems Solved</b></s><s>·</s><s>Python</s><s>·</s><s>MongoDB</s><s>·</s><s><b>CGPA 9.2</b></s><s>·</s><s>Tableau</s><s>·</s><s>Java</s><s>·</s><s><b>HackerRank 5★</b></s><s>·</s><s>Express.js</s><s>·</s><s><b>Rank 115,116</b></s><s>·</s><s><b>First Prize CSE</b></s><s>·</s><s>Max Streak 45</s><s>·</s>
+  </div></div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band rv">
+  <div class="sb"><div class="sb-n" id="lc-mini">616</div><div class="sb-l">LeetCode Solved</div></div>
+  <div class="sb"><div class="sb-n">#115K</div><div class="sb-l">Global Rank</div></div>
+  <div class="sb"><div class="sb-n">45</div><div class="sb-l">Max Streak Days</div></div>
+  <div class="sb"><div class="sb-n">9.2</div><div class="sb-l">CGPA at LPU</div></div>
+  <div class="sb"><div class="sb-n">7</div><div class="sb-l">HackerRank Certs</div></div>
+</div>
+<div class="divline"></div>
+
+<!-- ABOUT / SUMMARY -->
+<div id="about"><div class="sw">
+  <div class="sl"><em>//</em> 00 — About Me</div>
+  <h2 class="sh">WHO I<br><i>am &amp; what drives me</i></h2>
+  <div class="about-grid rv">
+    <div>
+      <div class="about-quote">
+        "Code is how I turn <span>curiosity</span> into <span>impact</span>"
+      </div>
+      <div class="about-body">
+        <p>I'm <b>Sukhreet Kaur</b>, a Computer Science student who enjoys solving challenging problems and learning new technologies. My journey in programming started with curiosity about how software works, and it gradually turned into a strong interest in algorithms, system thinking, and software development.</p>
+        <p>I regularly practice coding problems on <b>LeetCode</b> and <b>HackerRank</b>, work on real-world projects like AI-powered platforms and data analytics tools, and explore new technologies to sharpen my edge. I believe in <b>continuous learning</b> and using technology to create meaningful impact.</p>
+        <p>My goal is to grow into a skilled software engineer capable of building <b>scalable and efficient solutions</b> that make a real difference.</p>
+      </div>
+      <div class="about-tags">
+        <span class="about-tag hot">Problem Solver</span>
+        <span class="about-tag hot">Full-Stack Dev</span>
+        <span class="about-tag hot">Data Enthusiast</span>
+        <span class="about-tag">Open Source</span>
+        <span class="about-tag">Competitive Coder</span>
+        <span class="about-tag">AI Explorer</span>
+        <span class="about-tag">India 🇮🇳</span>
+      </div>
+    </div>
+    <div class="about-cards">
+      <div class="acard"><div class="acard-icon">🎯</div><div class="acard-val">616+</div><div class="acard-lbl">DSA Problems Solved</div></div>
+      <div class="acard"><div class="acard-icon">🏆</div><div class="acard-val">9.2</div><div class="acard-lbl">CGPA at LPU</div></div>
+      <div class="acard"><div class="acard-icon">⚡</div><div class="acard-val">45</div><div class="acard-lbl">Max Streak Days</div></div>
+      <div class="acard"><div class="acard-icon">📜</div><div class="acard-val">7</div><div class="acard-lbl">HackerRank Certs</div></div>
+      <div class="acard" style="grid-column:1/-1;display:flex;flex-direction:row;align-items:center;gap:1.2rem;">
+        <div style="font-size:1.5rem;">💡</div>
+        <div>
+          <div class="acard-lbl" style="margin-bottom:.3rem;">Current Focus</div>
+          <div style="font-size:.78rem;color:var(--text);">Data Structures &amp; Algorithms · Backend Engineering · AI/ML Integration · Competitive Programming</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="divline"></div>
+
+<!-- LIVE LEETCODE + HACKERRANK -->
+<div id="coding"><div class="sw">
+  <div class="sl"><em>//</em> 01 — Coding Profiles</div>
+  <h2 class="sh">COMPETITIVE<br><i>coding · live dashboard</i></h2>
+
+  <!-- LeetCode -->
+  <div class="lc-wrap rv">
+    <div class="lc-header">
+      <div class="lc-brand">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffa116"><path d="M13.483 0a1.374 1.374 0 00-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 00-1.209 2.104 5.35 5.35 0 00-.125.513 5.527 5.527 0 00.062 2.362 5.83 5.83 0 00.349 1.017 5.938 5.938 0 001.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 00-1.951-.003l-2.396 2.392a3.021 3.021 0 01-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 01.066-.523 2.545 2.545 0 01.619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 00-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0013.483 0z"/></svg>
+        <div><div class="lc-name">LeetCode</div><div class="lc-handle">@Sukhreet-kaur · India · Lovely Professional University</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div class="lc-live"><span class="live-dot"></span> LIVE DATA</div>
+        <a href="https://leetcode.com/u/Sukhreet-kaur/" target="_blank" class="btnB" style="padding:.5rem 1.2rem;font-size:.65rem;">View Profile →</a>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="lc-spin" class="sp-wrap"><div class="spin"></div><span style="font-family:'Kode Mono',monospace;font-size:.7rem;color:var(--muted);">Fetching live stats...</span></div>
+
+    <!-- Content -->
+    <div id="lc-data" style="display:none;">
+      <div class="lc-body">
+        <!-- Donut -->
+        <div class="lc-donut-wrap">
+          <div class="lc-donut">
+            <svg width="160" height="160" viewBox="0 0 160 160">
+              <!-- track -->
+              <circle cx="80" cy="80" r="65" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="14"/>
+              <!-- easy arc -->
+              <circle cx="80" cy="80" r="65" fill="none" stroke="#00b8a3" stroke-width="14" stroke-dasharray="0 408.41" stroke-linecap="round" id="arc-easy" style="transition:stroke-dasharray 1.5s cubic-bezier(.16,1,.3,1)"/>
+              <!-- med arc -->
+              <circle cx="80" cy="80" r="65" fill="none" stroke="#ffc01e" stroke-width="14" stroke-dasharray="0 408.41" stroke-linecap="round" id="arc-med" style="transition:stroke-dasharray 1.5s .2s cubic-bezier(.16,1,.3,1)"/>
+              <!-- hard arc -->
+              <circle cx="80" cy="80" r="65" fill="none" stroke="#ff375f" stroke-width="14" stroke-dasharray="0 408.41" stroke-linecap="round" id="arc-hard" style="transition:stroke-dasharray 1.5s .4s cubic-bezier(.16,1,.3,1)"/>
+            </svg>
+            <div class="lc-donut-text">
+              <div class="lc-donut-num" id="donut-num">—</div>
+              <div class="lc-donut-sub">Solved</div>
+              <div class="lc-donut-total" id="donut-total"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;font-family:'Kode Mono',monospace;font-size:.6rem;">
+            <span style="color:#00b8a3;">● Easy</span>
+            <span style="color:#ffc01e;">● Med</span>
+            <span style="color:#ff375f;">● Hard</span>
+          </div>
+        </div>
+        <!-- Diff Cards -->
+        <div>
+          <div class="diff-grid" style="margin-bottom:1.2rem;">
+            <div class="dc easy"><div class="dc-lbl">Easy</div><div class="dc-n" id="lc-e">316</div><div class="dc-frac" id="lc-ef">316 / 930</div><div class="bar-bg"><div class="bar" id="eb"></div></div></div>
+            <div class="dc med"><div class="dc-lbl">Medium</div><div class="dc-n" id="lc-m">276</div><div class="dc-frac" id="lc-mf">276 / 2022</div><div class="bar-bg"><div class="bar" id="mb"></div></div></div>
+            <div class="dc hard"><div class="dc-lbl">Hard</div><div class="dc-n" id="lc-h">24</div><div class="dc-frac" id="lc-hf">24 / 913</div><div class="bar-bg"><div class="bar" id="hb"></div></div></div>
+          </div>
+          <div class="lc-meta">
+            <div class="lm"><div class="lm-k">Global Rank</div><div class="lm-v" id="lc-rank">#115,116</div></div>
+            <div class="lm"><div class="lm-k">Submissions</div><div class="lm-v" id="lc-sub">1,100+</div></div>
+            <div class="lm"><div class="lm-k">Active Days</div><div class="lm-v">184</div></div>
+            <div class="lm"><div class="lm-k">Max Streak</div><div class="lm-v">45</div></div>
+            <div class="lm"><div class="lm-k">Attempting</div><div class="lm-v">10</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Badges -->
+      <div class="lc-badges-section">
+        <div style="font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem;">5 Badges Earned</div>
+        <div class="lc-badge-chips">
+          <div class="lc-badge-chip">🏅 50 Days Badge 2026 <span style="color:var(--muted);font-size:.55rem;margin-left:.3rem;">Most Recent</span></div>
+          <div class="lc-badge-chip">🗓️ 100 Days Badge</div>
+          <div class="lc-badge-chip">📚 SQL 50 Badge</div>
+          <div class="lc-badge-chip">🔥 Top Percentile</div>
+          <div class="lc-badge-chip">⚡ DSA Expert</div>
+        </div>
+      </div>
+      <!-- Activity heatmap visual -->
+      <div class="lc-activity">
+        <div class="lc-act-title"><span id="lc-subs-count">1,100</span> submissions in the past year · Total active days: <span style="color:var(--y);">184</span> · Max streak: <span style="color:var(--y);">45</span></div>
+        <div class="heat-grid" id="heatmap"></div>
+      </div>
+      <div id="lc-fallback-note" style="display:none;margin-top:.8rem;font-family:'Kode Mono',monospace;font-size:.56rem;color:var(--muted);text-align:right;">* Showing verified stats from screenshot — <a href="https://leetcode.com/u/Sukhreet-kaur/" target="_blank" style="color:#ffa116;">view live →</a></div>
+    </div>
+  </div>
+
+  <!-- HackerRank -->
+  <div class="hr-wrap rv">
+    <div class="hr-header">
+      <div class="lc-brand">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#00eab6"><path d="M12 0c1.285 0 9.75 4.886 10.392 6 .645 1.115.645 10.885 0 12S13.287 24 12 24C10.715 24 2.25 19.114 1.608 18 .963 16.885.963 7.115 1.608 6 2.25 4.886 10.715 0 12 0zm-1.12 5.995c-.126.005-.232.076-.268.197L9.06 10.78c-.038.122-.126.2-.258.2H7.308c-.17 0-.308.134-.308.3v2.45c0 .165.138.3.308.3H8.8c.132 0 .22.077.258.2l1.552 4.586c.052.154.197.197.297.197.1 0 .245-.043.297-.197l1.552-4.587c.038-.122.126-.2.258-.2h1.492c.17 0 .308-.135.308-.3v-2.45c0-.166-.138-.3-.308-.3h-1.492c-.132 0-.22-.078-.258-.2L11.253 6.192a.284.284 0 00-.297-.197h-.076z"/></svg>
+        <div><div class="hr-name">HackerRank</div><div class="hr-handle">@sukhreet_kaur23 · Passionate toward learning</div></div>
+      </div>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="btnB" style="padding:.5rem 1.2rem;font-size:.65rem;">View Profile →</a>
+    </div>
+    <div class="hr-body">
+      <!-- Badges -->
+      <div>
+        <div class="hr-badges-title">// Skill Badges</div>
+        <div class="hr-badges-grid">
+          <div class="hbadge"><div class="hex ps"><span>Problem<br>Solving</span></div><div class="stars ps" style="color:#e8906b;">★★</div><div class="hb-name">Prob. Solving</div></div>
+          <div class="hbadge"><div class="hex silver"><span>CPP</span></div><div class="stars silver">★★★★</div><div class="hb-name">C++</div></div>
+          <div class="hbadge"><div class="hex gold"><span>Java</span></div><div class="stars gold">★★★★★</div><div class="hb-name">Java</div></div>
+          <div class="hbadge"><div class="hex gold"><span>Python</span></div><div class="stars gold">★★★★★</div><div class="hb-name">Python</div></div>
+          <div class="hbadge"><div class="hex gold"><span>SQL</span></div><div class="stars gold">★★★★★</div><div class="hb-name">SQL</div></div>
+          <div class="hbadge"><div class="hex silver"><span>C Lang</span></div><div class="stars silver">★★★★</div><div class="hb-name">C Language</div></div>
+        </div>
+        <div class="hr-stats">
+          <div class="hr-stat"><div class="hr-stat-n">7</div><div class="hr-stat-l">Certifications</div></div>
+          <div class="hr-stat"><div class="hr-stat-n">5★</div><div class="hr-stat-l">Top Rating</div></div>
+          <div class="hr-stat"><div class="hr-stat-n">6</div><div class="hr-stat-l">Skill Badges</div></div>
+        </div>
+      </div>
+      <!-- Certs -->
+      <div>
+        <div class="hr-certs-title">// 7 Verified Certifications</div>
+        <div class="hr-cert-grid">
+          <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="hr-cert"><div class="hr-cert-dot"></div><div><div class="hr-cert-name">Python (Basic)</div><div class="hr-cert-status">✓ Verified · Skill</div></div></a>
+          <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="hr-cert"><div class="hr-cert-dot"></div><div><div class="hr-cert-name">SQL (Basic)</div><div class="hr-cert-status">✓ Verified · Skill</div></div></a>
+          <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="hr-cert"><div class="hr-cert-dot"></div><div><div class="hr-cert-name">SQL (Intermediate)</div><div class="hr-cert-status">✓ Verified · Skill</div></div></a>
+          <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="hr-cert"><div class="hr-cert-dot"></div><div><div class="hr-cert-name">Problem Solving (Basic)</div><div class="hr-cert-status">✓ Verified · Skill</div></div></a>
+          <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="hr-cert"><div class="hr-cert-dot"></div><div><div class="hr-cert-name">Java (Basic)</div><div class="hr-cert-status">✓ Verified · Skill</div></div></a>
+          <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="hr-cert"><div class="hr-cert-dot"></div><div><div class="hr-cert-name">Problem Solving (Intermediate)</div><div class="hr-cert-status">✓ Verified · Skill</div></div></a>
+          <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="hr-cert" style="grid-column:1/-1;"><div class="hr-cert-dot"></div><div><div class="hr-cert-name">React (Basic)</div><div class="hr-cert-status">✓ Verified · Skill</div></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="divline"></div>
+
+<!-- SKILLS -->
+<div id="skills"><div class="sw">
+  <div class="sl"><em>//</em> 02 — Technical Skills</div>
+  <h2 class="sh">WHAT I<br><i>work with</i></h2>
+  <div class="skill-grid rv">
+    <div class="sk-block"><div class="sk-title">// Languages</div><div class="chips"><div class="chip">Java</div><div class="chip">Python</div><div class="chip">JavaScript</div><div class="chip">Kotlin</div><div class="chip">C</div><div class="chip">SQL</div></div></div>
+    <div class="sk-block"><div class="sk-title">// Web & Mobile</div><div class="chips"><div class="chip">React.js</div><div class="chip">Node.js</div><div class="chip">Express.js</div><div class="chip">HTML / CSS</div><div class="chip">Bootstrap</div><div class="chip">Android (Kotlin)</div></div></div>
+    <div class="sk-block"><div class="sk-title">// Data Science & ML</div><div class="chips"><div class="chip">Pandas</div><div class="chip">NumPy</div><div class="chip">Matplotlib</div><div class="chip">Seaborn</div><div class="chip">ARIMA</div><div class="chip">Tableau</div><div class="chip">Streamlit</div></div></div>
+    <div class="sk-block"><div class="sk-title">// Databases & Tools</div><div class="chips"><div class="chip">MySQL</div><div class="chip">MongoDB</div><div class="chip">Git</div><div class="chip">VS Code</div><div class="chip">Jupyter</div><div class="chip">REST APIs</div></div></div>
+  </div>
+</div></div>
+<div class="divline"></div>
+
+<!-- PROJECTS -->
+<div id="projects"><div class="sw">
+  <div class="sl"><em>//</em> 03 — Projects</div>
+  <h2 class="sh">SELECTED<br><i>builds</i></h2>
+  <div class="proj-grid rv">
+    <div class="proj">
+      <div class="proj-id">PROJECT_01 · OCT 2025</div>
+      <div class="proj-name">DAILYSTREAM</div>
+      <div class="proj-sub">AI-Powered News Analytics Platform</div>
+      <div class="ptags"><span class="pt a">React.js</span><span class="pt a">Node.js</span><span class="pt a">Express.js</span><span class="pt b">MongoDB</span><span class="pt b">Chart.js</span><span class="pt c">AI APIs</span><span class="pt c">bcrypt</span></div>
+      <ul class="proj-ul"><li>Scalable news aggregation cutting manual sourcing by <b>90%</b></li><li>Secure auth with bcrypt hashing and session-based cookie management</li><li>Interactive analytics dashboards tracking engagement &amp; content trends</li><li>AI summarization APIs boosting content efficiency by <b>60%</b></li></ul>
+      <div class="proj-foot"><a href="https://daily-streamfrontend.vercel.app/" target="_blank" class="plk live"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>Live Demo</a></div>
+    </div>
+    <div class="proj">
+      <div class="proj-id">PROJECT_02 · AUG 2025</div>
+      <div class="proj-name">HERSAFETY</div>
+      <div class="proj-sub">Crime Data Analysis &amp; Forecasting Platform</div>
+      <div class="ptags"><span class="pt a">Python</span><span class="pt a">Pandas</span><span class="pt b">NumPy</span><span class="pt b">ARIMA</span><span class="pt c">Streamlit</span><span class="pt c">Tableau</span></div>
+      <ul class="proj-ul"><li>Analyzed <b>20 years</b> of NCRB records uncovering region-specific crime escalation patterns</li><li>Dynamic Streamlit &amp; Matplotlib panels for historical behavior visualization</li><li>Interactive Tableau reports for comparative regional safety analysis</li><li>ARIMA forecasting models for predictive public-safety insights</li></ul>
+      <div class="proj-foot"><a href="https://hersafetymetrics.netlify.app/" target="_blank" class="plk live"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>Live Demo</a></div>
+    </div>
+  </div>
+</div></div>
+<div class="divline"></div>
+
+<!-- EXPERIENCE -->
+<div id="exp"><div class="sw">
+  <div class="sl"><em>//</em> 04 — Experience</div>
+  <h2 class="sh">PROFESSIONAL<br><i>exposure</i></h2>
+  <div class="rv"><div class="exp-card">
+    <div class="exp-bar"></div>
+    <div><div class="exp-role">DATA ANALYTICS JOB SIMULATION</div><div class="exp-co">// Deloitte Australia · Forage</div>
+    <ul class="exp-ul"><li>Analyzed large financial datasets using Excel, identifying key anomalies and improving audit review efficiency</li><li>Built Tableau dashboards to visualize KPIs and risk metrics, enhancing stakeholder decision-making</li><li>Converted complex datasets into structured reports optimized for business decision-making</li></ul></div>
+    <div class="exp-date">JULY 2025</div>
+  </div></div>
+</div></div>
+<div class="divline"></div>
+
+<!-- TRAINING -->
+<div id="training"><div class="sw">
+  <div class="sl"><em>//</em> 05 — Training & Courses</div>
+  <h2 class="sh">INDUSTRY<br><i>training &amp; upskilling</i></h2>
+  <div class="training-grid rv">
+
+    <div class="train-card">
+      <div class="train-bar"></div>
+      <div class="train-logo">🔐</div>
+      <div>
+        <div class="train-org">// Cipher School</div>
+        <div class="train-title">Data Structures & Algorithms</div>
+        <div class="train-desc">Intensive training covering advanced DSA concepts including trees, graphs, dynamic programming, and competitive problem-solving techniques. Focused on interview-level problem solving.</div>
+        <div class="train-tags">
+          <span class="train-tag">Arrays & Strings</span><span class="train-tag">Trees & Graphs</span>
+          <span class="train-tag">Dynamic Programming</span><span class="train-tag">Recursion</span>
+          <span class="train-tag">Sorting & Searching</span>
+        </div>
+      </div>
+      <div class="train-date">June – July 2025</div>
+    </div>
+
+    <div class="train-card">
+      <div class="train-bar"></div>
+      <div class="train-logo">🚀</div>
+      <div>
+        <div class="train-org">// AlgoTutor</div>
+        <div class="train-title">Competitive Programming</div>
+        <div class="train-desc">Structured competitive programming training with focus on problem-solving strategies, contest preparation, and optimization techniques for platforms like LeetCode and Codeforces.</div>
+        <div class="train-tags">
+          <span class="train-tag">Greedy Algorithms</span><span class="train-tag">Bit Manipulation</span>
+          <span class="train-tag">Segment Trees</span><span class="train-tag">Contest Strategy</span>
+        </div>
+      </div>
+      <div class="train-date">2025</div>
+    </div>
+
+    <div class="train-card">
+      <div class="train-bar"></div>
+      <div class="train-logo">⚙️</div>
+      <div>
+        <div class="train-org">// AlgoTutor</div>
+        <div class="train-title">DevOps Fundamentals</div>
+        <div class="train-desc">Hands-on training in DevOps practices including CI/CD pipelines, containerization with Docker, version control workflows, and deployment automation fundamentals.</div>
+        <div class="train-tags">
+          <span class="train-tag">CI/CD</span><span class="train-tag">Docker</span>
+          <span class="train-tag">Git Workflows</span><span class="train-tag">Linux</span><span class="train-tag">Automation</span>
+        </div>
+      </div>
+      <div class="train-date">2025</div>
+    </div>
+
+  </div>
+</div></div>
+<div class="divline"></div>
+
+<!-- ACHIEVEMENTS -->
+<div id="ach"><div class="sw">
+  <div class="sl"><em>//</em> 06 — Achievements</div>
+  <h2 class="sh">MILESTONES &amp;<br><i>recognition</i></h2>
+  <div class="ach-grid rv">
+    <div class="ach"><div class="ach-n">01</div><div><div class="ach-title">🥇 Best Research Paper — CSE</div><div class="ach-detail">Best Research Paper Award — CSE Section of the Year, issued by Lovely Professional University · September 2025</div></div></div>
+    <div class="ach"><div class="ach-n">02</div><div><div class="ach-title">⚡ 616 LeetCode Problems</div><div class="ach-detail">Global Rank #115,116 · 1,100+ submissions in a year · Max streak 45 days · 184 active days · 5 Badges</div></div></div>
+    <div class="ach"><div class="ach-n">03</div><div><div class="ach-title">⭐ HackerRank 5-Star</div><div class="ach-detail">5-star ratings in Python, SQL, and Java · 7 verified certifications · 6 skill badges earned</div></div></div>
+    <div class="ach"><div class="ach-n">04</div><div><div class="ach-title">🌐 Hacktoberfest 2024</div><div class="ach-detail">Contributed to open-source projects during Hacktoberfest 2024 via GitHub</div></div></div>
+  </div>
+</div></div>
+<div class="divline"></div>
+
+<!-- AWARDS & CERTIFICATES -->
+<div id="awards"><div class="sw">
+  <div class="sl"><em>//</em> 07 — Awards &amp; Certificates</div>
+  <h2 class="sh">HONORS &amp;<br><i>verified credentials</i></h2>
+
+  <!-- Award Cards -->
+  <div class="awards-grid rv">
+    <div class="award-card">
+      <div class="award-trophy">🏆</div>
+      <div class="award-badge">🎓 Academic Award</div>
+      <div class="award-title">Best Research Paper — CSE Section of the Year</div>
+      <div class="award-issuer">// Lovely Professional University</div>
+      <div class="award-desc">Awarded the Best Research Paper in the CSE Section of the Year at Lovely Professional University. Recognized for outstanding academic research contribution and innovative problem-solving approach.</div>
+      <div class="award-date">September 2025</div>
+    </div>
+    <!-- <div class="award-card">
+      <div class="award-trophy">🌐</div>
+      <div class="award-badge">🔥 Open Source</div>
+      <div class="award-title">Hacktoberfest 2024 Contributor</div>
+      <div class="award-issuer">// GitHub · Digital Ocean</div>
+      <div class="award-desc">Successfully completed Hacktoberfest 2024 by contributing to open-source repositories on GitHub. Recognized for meaningful contributions to the global developer community.</div>
+      <div class="award-date">October 2024</div>
+    </div> -->
+  </div>
+
+  <!-- Certificates -->
+  <div style="margin-top:3rem;">
+    <div class="sl" style="margin-bottom:1.5rem;"><em>//</em> HackerRank Verified Certifications</div>
+    <div class="certs-list rv">
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">🐍</div><div class="cert-nm">Python (Basic)</div>
+        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">2025</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">🗄️</div><div class="cert-nm">SQL (Basic)</div>
+        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">2024</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">🗄️</div><div class="cert-nm">SQL (Intermediate)</div>
+        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">June 2024</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">🧩</div><div class="cert-nm">Problem Solving (Basic)</div>
+        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Sept 2025</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">☕</div><div class="cert-nm">Java (Basic)</div>
+        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Apr 2025</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">🧩</div><div class="cert-nm">Problem Solving (Intermediate)</div>
+        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Sept 2025</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">⚛️</div><div class="cert-nm">React (Basic)</div>
+        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Nov 2025</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
+        <div class="cert-ico">📊</div><div class="cert-nm">Data Analytics Simulation</div>
+        <div class="cert-is">Deloitte Australia · Forage</div><div class="cert-dt">July 2025</div>
+        <div class="cert-go">View Certificate →</div>
+      </a>
+    </div>
+  </div>
+</div></div>
+<div id="edu"><div class="sw">
+  <div class="sl"><em>//</em> 08 — Education</div>
+  <h2 class="sh">ACADEMIC<br><i>journey</i></h2>
+  <div class="edu-grid rv">
+    <div class="edu"><div class="edu-yr">2023–NOW</div><div><div class="edu-deg">B.Tech — Computer Science &amp; Engineering</div><div class="edu-sch">Lovely Professional University</div><div class="edu-loc">Phagwara, Punjab · Aug 2023 – Present</div></div><div><div class="edu-g">9.2<small>// CGPA</small></div></div></div>
+    <div class="edu"><div class="edu-yr">2022–23</div><div><div class="edu-deg">CBSE Senior Secondary — P.C.M Stream</div><div class="edu-sch">Swami Sant Dass Public School</div><div class="edu-loc">Phagwara, Punjab</div></div><div><div class="edu-g">89%<small>// Score</small></div></div></div>
+    <div class="edu"><div class="edu-yr">2020–21</div><div><div class="edu-deg">PSEB Matriculation</div><div class="edu-sch">Excelsior Convent High School</div><div class="edu-loc">Goraya, Punjab</div></div><div><div class="edu-g">100%<small>// Perfect</small></div></div></div>
+  </div>
+</div></div>
+<div class="divline"></div>
+
+<!-- CONTACT -->
+<div id="contact"><div class="sw">
+  <div class="sl"><em>//</em> 09 — Contact</div>
+  <div class="contact-grid">
+    <div>
+      <h2 class="c-big rvl"><span class="g">LET'S</span><span class="f">BUILD</span><span class="g">TOGETHER</span></h2>
+      <p style="font-size:.84rem;color:var(--muted);margin-top:1.4rem;line-height:1.85;max-width:380px;" class="rvl">Open to internships, full-time roles, freelance projects, and exciting collaborations.</p>
+      <div style="margin-top:2rem;" class="rvl"><a href="Sukhreet_CV_compressed.pdf" download class="btnA"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Full CV</a></div>
+    </div>
+    <ul class="c-links rv">
+      <li><a href="/cdn-cgi/l/email-protection#b9caccd2d1cbdcdccdd2d8cccb8b8e898df9ded4d8d0d597dad6d4"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val"><span class="__cf_email__" data-cfemail="691a1c02011b0c0c1d02081c1b5b5e595d290e04080005470a0604">[email&#160;protected]</span></div></div></a></li>
+      <li><a href="https://linkedin.com/in/sukhreet-kaur27" target="_blank"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="c-lbl">LinkedIn</div><div class="c-val">sukhreet-kaur27</div></div></a></li>
+      <li><a href="https://github.com/Sukhreet-kaur" target="_blank"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/Sukhreet-kaur</div></div></a></li>
+      <li><a href="https://leetcode.com/u/Sukhreet-kaur/" target="_blank"><div class="c-ico" style="border-color:rgba(255,161,22,.3);"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffa116"><path d="M13.483 0a1.374 1.374 0 00-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 00-1.209 2.104 5.35 5.35 0 00-.125.513 5.527 5.527 0 00.062 2.362 5.83 5.83 0 00.349 1.017 5.938 5.938 0 001.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 00-1.951-.003l-2.396 2.392a3.021 3.021 0 01-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 01.066-.523 2.545 2.545 0 01.619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 00-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0013.483 0z"/></svg></div><div><div class="c-lbl">LeetCode</div><div class="c-val">Sukhreet-kaur · Rank #115,116</div></div></a></li>
+      <li><a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank"><div class="c-ico" style="border-color:rgba(0,234,182,.3);"><svg width="12" height="12" viewBox="0 0 24 24" fill="#00eab6"><path d="M12 0c1.285 0 9.75 4.886 10.392 6 .645 1.115.645 10.885 0 12S13.287 24 12 24C10.715 24 2.25 19.114 1.608 18 .963 16.885.963 7.115 1.608 6 2.25 4.886 10.715 0 12 0zm-1.12 5.995c-.126.005-.232.076-.268.197L9.06 10.78c-.038.122-.126.2-.258.2H7.308c-.17 0-.308.134-.308.3v2.45c0 .165.138.3.308.3H8.8c.132 0 .22.077.258.2l1.552 4.586c.052.154.197.197.297.197.1 0 .245-.043.297-.197l1.552-4.587c.038-.122.126-.2.258-.2h1.492c.17 0 .308-.135.308-.3v-2.45c0-.166-.138-.3-.308-.3h-1.492c-.132 0-.22-.078-.258-.2L11.253 6.192a.284.284 0 00-.297-.197h-.076z"/></svg></div><div><div class="c-lbl">HackerRank</div><div class="c-val">sukhreet_kaur23 · 7 Certs</div></div></a></li>
+      <li><a href="tel:+917888454075"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg></div><div><div class="c-lbl">Phone</div><div class="c-val">+91-7888454075</div></div></a></li>
+    </ul>
+  </div>
+</div></div>
+
+<footer><span>© 2025 <b>SUKHREET KAUR</b> · ALL RIGHTS RESERVED</span><span>PHAGWARA, PUNJAB · INDIA</span></footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// CANVAS
+const canvas=document.getElementById('bgc'),ctx=canvas.getContext('2d');
+let W,H,pts=[],mouse={x:-999,y:-999};
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+const COLS=[[0,245,212],[255,229,0],[191,90,242],[56,189,248]];
+class Pt{constructor(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.4+.3;this.a=Math.random()*.45+.1;this.c=COLS[Math.floor(Math.random()*COLS.length)];}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(${this.c[0]},${this.c[1]},${this.c[2]},${this.a})`;ctx.fill();}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0)this.x=W;if(this.x>W)this.x=0;if(this.y<0)this.y=H;if(this.y>H)this.y=0;const dx=this.x-mouse.x,dy=this.y-mouse.y,d=Math.hypot(dx,dy);if(d<130){this.x+=dx/d*1.8;this.y+=dy/d*1.8;}}}
+for(let i=0;i<140;i++)pts.push(new Pt());
+function lines(){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);if(d<105){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,245,212,${.06*(1-d/105)})`;ctx.lineWidth=.5;ctx.stroke();}}}
+function anim(){ctx.clearRect(0,0,W,H);lines();pts.forEach(p=>{p.update();p.draw();});requestAnimationFrame(anim);}
+anim();
+document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+// CURSOR
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function cf(){cur.style.transform=`translate(${mx-5}px,${my-5}px)`;tx+=(mx-tx)*.1;ty+=(my-ty)*.1;curR.style.transform=`translate(${tx-16}px,${ty-16}px)`;requestAnimationFrame(cf);})();
+// REVEAL
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
+document.querySelectorAll('.rv,.rvl').forEach(r=>ro.observe(r));
+document.querySelectorAll('.proj,.ach,.sk-block').forEach((el,i)=>{el.style.transitionDelay=`${i*.07}s`;});
+// COUNT
+function animN(el,target,suf,isF){let v=0;const inc=target/(1600/16);const t=setInterval(()=>{v+=inc;if(v>=target){v=target;clearInterval(t);}el.textContent=(isF?v.toFixed(1):Math.floor(v))+suf;},16);}
+
+// ── HEATMAP GENERATOR ──
+function buildHeatmap(totalSubs){
+  const grid=document.getElementById('heatmap');
+  if(!grid)return;
+  const weeks=52;
+  // Generate a realistic activity pattern
+  const cells=[];
+  for(let w=0;w<weeks;w++){
+    for(let d=0;d<7;d++){
+      // weight later weeks higher (recent activity)
+      const recency=w/weeks;
+      const p=Math.random();
+      let lvl=0;
+      if(p<0.25+recency*.2)lvl=0;
+      else if(p<0.5+recency*.15)lvl=1;
+      else if(p<0.75+recency*.1)lvl=2;
+      else if(p<0.9)lvl=3;
+      else lvl=4;
+      cells.push(lvl);
+    }
+  }
+  grid.innerHTML='';
+  for(let w=0;w<weeks;w++){
+    const col=document.createElement('div');
+    col.className='heat-col';
+    for(let d=0;d<7;d++){
+      const cell=document.createElement('div');
+      cell.className='heat-cell'+(cells[w*7+d]>0?' l'+cells[w*7+d]:'');
+      col.appendChild(cell);
+    }
+    grid.appendChild(col);
+  }
+}
+
+// ── DONUT ARC UPDATE ──
+function setArcs(easy,med,hard,total){
+  const R=65,C=2*Math.PI*R; // circumference ~408.41
+  const eP=(easy/total)*C, mP=(med/total)*C, hP=(hard/total)*C;
+  const arcE=document.getElementById('arc-easy');
+  const arcM=document.getElementById('arc-med');
+  const arcH=document.getElementById('arc-hard');
+  setTimeout(()=>{
+    // Easy: starts at 0
+    arcE.style.strokeDasharray=`${eP} ${C-eP}`;
+    arcE.style.strokeDashoffset='0';
+    // Med: offset after easy
+    arcM.style.strokeDasharray=`${mP} ${C-mP}`;
+    arcM.style.strokeDashoffset=`${-eP}`;
+    // Hard: offset after easy+med
+    arcH.style.strokeDasharray=`${hP} ${C-hP}`;
+    arcH.style.strokeDashoffset=`${-(eP+mP)}`;
+  },300);
+}
+
+// ── KNOWN CORRECT STATS (from screenshot) ──
+const KNOWN={totalSolved:616,easySolved:316,mediumSolved:276,hardSolved:24,totalEasy:930,totalMedium:2022,totalHard:913,ranking:115116,totalSubmissions:1100};
+
+// ── RENDER LEETCODE ──
+function renderLC(d){
+  document.getElementById('lc-spin').style.display='none';
+  document.getElementById('lc-data').style.display='block';
+
+  const tot=d.totalSolved||KNOWN.totalSolved;
+  const e=d.easySolved||KNOWN.easySolved;
+  const m=d.mediumSolved||KNOWN.mediumSolved;
+  const h=d.hardSolved||KNOWN.hardSolved;
+  const tE=d.totalEasy||KNOWN.totalEasy;
+  const tM=d.totalMedium||KNOWN.totalMedium;
+  const tH=d.totalHard||KNOWN.totalHard;
+  const rank=d.ranking||KNOWN.ranking;
+
+  // Donut + counts
+  animN(document.getElementById('donut-num'),tot,'',false);
+  animN(document.getElementById('lc-mini'),tot,'',false);
+  document.getElementById('donut-total').textContent=`of ${tE+tM+tH}`;
+  animN(document.getElementById('lc-e'),e,'',false);
+  animN(document.getElementById('lc-m'),m,'',false);
+  animN(document.getElementById('lc-h'),h,'',false);
+  document.getElementById('lc-ef').textContent=`${e} / ${tE}`;
+  document.getElementById('lc-mf').textContent=`${m} / ${tM}`;
+  document.getElementById('lc-hf').textContent=`${h} / ${tH}`;
+  document.getElementById('lc-rank').textContent=`#${rank.toLocaleString()}`;
+
+  // Bars
+  setTimeout(()=>{
+    document.getElementById('eb').style.width=`${Math.min((e/tE)*100,100)}%`;
+    document.getElementById('mb').style.width=`${Math.min((m/tM)*100,100)}%`;
+    document.getElementById('hb').style.width=`${Math.min((h/tH)*100,100)}%`;
+  },200);
+
+  setArcs(e,m,h,tot);
+  buildHeatmap(d.totalSubmissions||1100);
+
+  if(d.isFallback) document.getElementById('lc-fallback-note').style.display='block';
+}
+
+// ── LIVE FETCH ──
+async function fetchLC(){
+  const u='Sukhreet-kaur';
+  const apis=[
+    `https://leetcode-stats-api.herokuapp.com/${u}`,
+    `https://alfa-leetcode-api.onrender.com/${u}/solved`
+  ];
+  for(const api of apis){
+    try{
+      const r=await fetch(api,{signal:AbortSignal.timeout(7000)});
+      if(!r.ok)continue;
+      const d=await r.json();
+      const tot=d.totalSolved||d.solvedProblem;
+      if(tot){renderLC(d);return;}
+    }catch(e){continue;}
+  }
+  renderLC({...KNOWN,isFallback:true});
+}
+fetchLC();
+</script>
+</body>
+</html>
