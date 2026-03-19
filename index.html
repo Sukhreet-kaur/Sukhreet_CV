@@ -13,7 +13,7 @@ body{background:var(--bg);color:var(--text);font-family:'Bricolage Grotesque',sa
 body::before{content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.4;}
 #cur{width:10px;height:10px;background:var(--c);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;box-shadow:0 0 12px var(--c),0 0 24px rgba(0,245,212,.4);}
 #curR{width:32px;height:32px;border:1.5px solid rgba(0,245,212,.45);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;}
-#bgc{position:fixed;inset:0;z-index:0;}
+#bgCanvas{position:fixed;inset:0;z-index:0;}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(2,2,10,.82);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);}
 .logo{font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:.15em;background:linear-gradient(90deg,var(--c),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -129,7 +129,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .hex.green{background:linear-gradient(135deg,#00eab6,#00b8a3);}
 .hex span{color:var(--bg);font-size:.45rem;}
 .stars{font-size:.6rem;letter-spacing:.05em;}
-.stars.gold{color:#ffa116;}.stars.silver{color:#a0a0b0;}.stars.green{color:#00eab6;}
+.stars.gold{color:#ffa116;}.stars.silver{color:#cfcfda;}.stars.green{color:#00eab6;}
 .hb-name{font-family:'Kode Mono',monospace;font-size:.52rem;color:var(--muted);letter-spacing:.05em;text-align:center;}
 /* HR certs */
 .hr-certs-title{font-family:'Kode Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;}
@@ -280,7 +280,10 @@ footer b{color:var(--c);}
 </head>
 <body>
 <div id="cur"></div><div id="curR"></div>
-<canvas id="bgc"></canvas>
+
+<!-- WebGL Aurora Background -->
+<canvas id="bgCanvas"></canvas>
+
 <nav>
   <div class="logo">Sukhreet.Dev</div>
   <ul class="nav-links">
@@ -391,13 +394,9 @@ footer b{color:var(--c);}
         <div class="lc-donut-wrap">
           <div class="lc-donut">
             <svg width="160" height="160" viewBox="0 0 160 160">
-              <!-- track -->
               <circle cx="80" cy="80" r="65" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="14"/>
-              <!-- easy arc -->
               <circle cx="80" cy="80" r="65" fill="none" stroke="#00b8a3" stroke-width="14" stroke-dasharray="0 408.41" stroke-linecap="round" id="arc-easy" style="transition:stroke-dasharray 1.5s cubic-bezier(.16,1,.3,1)"/>
-              <!-- med arc -->
               <circle cx="80" cy="80" r="65" fill="none" stroke="#ffc01e" stroke-width="14" stroke-dasharray="0 408.41" stroke-linecap="round" id="arc-med" style="transition:stroke-dasharray 1.5s .2s cubic-bezier(.16,1,.3,1)"/>
-              <!-- hard arc -->
               <circle cx="80" cy="80" r="65" fill="none" stroke="#ff375f" stroke-width="14" stroke-dasharray="0 408.41" stroke-linecap="round" id="arc-hard" style="transition:stroke-dasharray 1.5s .4s cubic-bezier(.16,1,.3,1)"/>
             </svg>
             <div class="lc-donut-text">
@@ -549,7 +548,6 @@ footer b{color:var(--c);}
   <div class="sl"><em>//</em> 05 — Training & Courses</div>
   <h2 class="sh">INDUSTRY<br><i>training &amp; upskilling</i></h2>
   <div class="training-grid rv">
-
     <div class="train-card">
       <div class="train-bar"></div>
       <div class="train-logo">🔐</div>
@@ -565,7 +563,6 @@ footer b{color:var(--c);}
       </div>
       <div class="train-date">June – July 2025</div>
     </div>
-
     <div class="train-card">
       <div class="train-bar"></div>
       <div class="train-logo">🚀</div>
@@ -580,7 +577,6 @@ footer b{color:var(--c);}
       </div>
       <div class="train-date">2025</div>
     </div>
-
     <div class="train-card">
       <div class="train-bar"></div>
       <div class="train-logo">⚙️</div>
@@ -595,7 +591,6 @@ footer b{color:var(--c);}
       </div>
       <div class="train-date">2025</div>
     </div>
-
   </div>
 </div></div>
 <div class="divline"></div>
@@ -617,8 +612,6 @@ footer b{color:var(--c);}
 <div id="awards"><div class="sw">
   <div class="sl"><em>//</em> 07 — Awards &amp; Certificates</div>
   <h2 class="sh">HONORS &amp;<br><i>verified credentials</i></h2>
-
-  <!-- Award Cards -->
   <div class="awards-grid rv">
     <div class="award-card">
       <div class="award-trophy">🏆</div>
@@ -628,63 +621,22 @@ footer b{color:var(--c);}
       <div class="award-desc">Awarded the Best Research Paper in the CSE Section of the Year at Lovely Professional University. Recognized for outstanding academic research contribution and innovative problem-solving approach.</div>
       <div class="award-date">September 2025</div>
     </div>
-    <!-- <div class="award-card">
-      <div class="award-trophy">🌐</div>
-      <div class="award-badge">🔥 Open Source</div>
-      <div class="award-title">Hacktoberfest 2024 Contributor</div>
-      <div class="award-issuer">// GitHub · Digital Ocean</div>
-      <div class="award-desc">Successfully completed Hacktoberfest 2024 by contributing to open-source repositories on GitHub. Recognized for meaningful contributions to the global developer community.</div>
-      <div class="award-date">October 2024</div>
-    </div> -->
   </div>
-
-  <!-- Certificates -->
   <div style="margin-top:3rem;">
     <div class="sl" style="margin-bottom:1.5rem;"><em>//</em> HackerRank Verified Certifications</div>
     <div class="certs-list rv">
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">🐍</div><div class="cert-nm">Python (Basic)</div>
-        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">2025</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">🗄️</div><div class="cert-nm">SQL (Basic)</div>
-        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">2024</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">🗄️</div><div class="cert-nm">SQL (Intermediate)</div>
-        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">June 2024</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">🧩</div><div class="cert-nm">Problem Solving (Basic)</div>
-        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Sept 2025</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">☕</div><div class="cert-nm">Java (Basic)</div>
-        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Apr 2025</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">🧩</div><div class="cert-nm">Problem Solving (Intermediate)</div>
-        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Sept 2025</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">⚛️</div><div class="cert-nm">React (Basic)</div>
-        <div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Nov 2025</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
-      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item">
-        <div class="cert-ico">📊</div><div class="cert-nm">Data Analytics Simulation</div>
-        <div class="cert-is">Deloitte Australia · Forage</div><div class="cert-dt">July 2025</div>
-        <div class="cert-go">View Certificate →</div>
-      </a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">🐍</div><div class="cert-nm">Python (Basic)</div><div class="cert-is">HackerRank · Verified</div><div class="cert-dt">2025</div><div class="cert-go">View Certificate →</div></a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">🗄️</div><div class="cert-nm">SQL (Basic)</div><div class="cert-is">HackerRank · Verified</div><div class="cert-dt">2024</div><div class="cert-go">View Certificate →</div></a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">🗄️</div><div class="cert-nm">SQL (Intermediate)</div><div class="cert-is">HackerRank · Verified</div><div class="cert-dt">June 2024</div><div class="cert-go">View Certificate →</div></a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">🧩</div><div class="cert-nm">Problem Solving (Basic)</div><div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Sept 2025</div><div class="cert-go">View Certificate →</div></a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">☕</div><div class="cert-nm">Java (Basic)</div><div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Apr 2025</div><div class="cert-go">View Certificate →</div></a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">🧩</div><div class="cert-nm">Problem Solving (Intermediate)</div><div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Sept 2025</div><div class="cert-go">View Certificate →</div></a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">⚛️</div><div class="cert-nm">React (Basic)</div><div class="cert-is">HackerRank · Verified</div><div class="cert-dt">Nov 2025</div><div class="cert-go">View Certificate →</div></a>
+      <a href="https://www.hackerrank.com/profile/sukhreet_kaur23" target="_blank" class="cert-item"><div class="cert-ico">📊</div><div class="cert-nm">Data Analytics Simulation</div><div class="cert-is">Deloitte Australia · Forage</div><div class="cert-dt">July 2025</div><div class="cert-go">View Certificate →</div></a>
     </div>
   </div>
 </div></div>
+
 <div id="edu"><div class="sw">
   <div class="sl"><em>//</em> 08 — Education</div>
   <h2 class="sh">ACADEMIC<br><i>journey</i></h2>
@@ -706,7 +658,7 @@ footer b{color:var(--c);}
       <div style="margin-top:2rem;" class="rvl"><a href="Sukhreet_CV_compressed.pdf" download class="btnA"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Full CV</a></div>
     </div>
     <ul class="c-links rv">
-      <li><a href="/cdn-cgi/l/email-protection#b9caccd2d1cbdcdccdd2d8cccb8b8e898df9ded4d8d0d597dad6d4"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val"><span class="__cf_email__" data-cfemail="691a1c02011b0c0c1d02081c1b5b5e595d290e04080005470a0604">sukhreetkaur2704@gmail.com</span></div></div></a></li>
+      <li><a href="mailto:sukhreetkaur2704@gmail.com"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">sukhreetkaur2704@gmail.com</div></div></a></li>
       <li><a href="https://linkedin.com/in/sukhreet-kaur27" target="_blank"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="c-lbl">LinkedIn</div><div class="c-val">sukhreet-kaur27</div></div></a></li>
       <li><a href="https://github.com/Sukhreet-kaur" target="_blank"><div class="c-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/Sukhreet-kaur</div></div></a></li>
       <li><a href="https://leetcode.com/u/Sukhreet-kaur/" target="_blank"><div class="c-ico" style="border-color:rgba(255,161,22,.3);"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffa116"><path d="M13.483 0a1.374 1.374 0 00-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 00-1.209 2.104 5.35 5.35 0 00-.125.513 5.527 5.527 0 00.062 2.362 5.83 5.83 0 00.349 1.017 5.938 5.938 0 001.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 00-1.951-.003l-2.396 2.392a3.021 3.021 0 01-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 01.066-.523 2.545 2.545 0 01.619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 00-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0013.483 0z"/></svg></div><div><div class="c-lbl">LeetCode</div><div class="c-val">Sukhreet-kaur · Rank #115,116</div></div></a></li>
@@ -718,41 +670,218 @@ footer b{color:var(--c);}
 
 <footer><span>© 2025 <b>SUKHREET KAUR</b> · ALL RIGHTS RESERVED</span><span>PHAGWARA, PUNJAB · INDIA</span></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// CANVAS
-const canvas=document.getElementById('bgc'),ctx=canvas.getContext('2d');
-let W,H,pts=[],mouse={x:-999,y:-999};
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-resize();window.addEventListener('resize',resize);
-const COLS=[[0,245,212],[255,229,0],[191,90,242],[56,189,248]];
-class Pt{constructor(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.4+.3;this.a=Math.random()*.45+.1;this.c=COLS[Math.floor(Math.random()*COLS.length)];}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(${this.c[0]},${this.c[1]},${this.c[2]},${this.a})`;ctx.fill();}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0)this.x=W;if(this.x>W)this.x=0;if(this.y<0)this.y=H;if(this.y>H)this.y=0;const dx=this.x-mouse.x,dy=this.y-mouse.y,d=Math.hypot(dx,dy);if(d<130){this.x+=dx/d*1.8;this.y+=dy/d*1.8;}}}
-for(let i=0;i<140;i++)pts.push(new Pt());
-function lines(){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);if(d<105){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,245,212,${.06*(1-d/105)})`;ctx.lineWidth=.5;ctx.stroke();}}}
-function anim(){ctx.clearRect(0,0,W,H);lines();pts.forEach(p=>{p.update();p.draw();});requestAnimationFrame(anim);}
-anim();
-document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
-// CURSOR
+<script>
+// ═══════════════════════════════════════════════════════
+//  WEBGL AURORA PLASMA BACKGROUND
+// ═══════════════════════════════════════════════════════
+(function(){
+  const canvas = document.getElementById('bgCanvas');
+
+  // Fallback if no WebGL
+  function fallback(){
+    canvas.style.display='none';
+    document.body.style.background='radial-gradient(ellipse at 20% 50%, #030318 0%, #02020a 60%)';
+  }
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if(!gl){ fallback(); return; }
+
+  // ── Shaders ──
+  const VS = `
+    attribute vec2 a_pos;
+    void main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }
+  `;
+
+  const FS = `
+    precision highp float;
+    uniform float u_t;
+    uniform vec2  u_res;
+    uniform vec2  u_mouse;
+
+    // Hash / noise helpers
+    vec2 hash2(vec2 p){
+      p = vec2(dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3)));
+      return -1.0 + 2.0*fract(sin(p)*43758.5453123);
+    }
+    float gnoise(vec2 p){
+      vec2 i=floor(p), f=fract(p);
+      vec2 u=f*f*(3.0-2.0*f);
+      return mix(mix(dot(hash2(i+vec2(0,0)),f-vec2(0,0)),
+                     dot(hash2(i+vec2(1,0)),f-vec2(1,0)),u.x),
+                 mix(dot(hash2(i+vec2(0,1)),f-vec2(0,1)),
+                     dot(hash2(i+vec2(1,1)),f-vec2(1,1)),u.x),u.y);
+    }
+
+    // Fractional Brownian Motion
+    float fbm(vec2 p){
+      float v=0.0, a=0.5;
+      mat2 R=mat2(cos(0.5),sin(0.5),-sin(0.5),cos(0.5));
+      for(int i=0;i<6;i++){
+        v+=a*gnoise(p);
+        p=R*p*2.1;
+        a*=0.5;
+      }
+      return v;
+    }
+
+    void main(){
+      vec2 uv = gl_FragCoord.xy / u_res;
+      vec2 st = uv * 2.8;
+
+      // Slow time + mouse influence
+      float T   = u_t * 0.09;
+      vec2 mouse = u_mouse * 0.35;
+
+      // Double domain warp
+      vec2 q = vec2(
+        fbm(st + vec2(0.0,0.0) + T),
+        fbm(st + vec2(5.2,1.3) + T)
+      );
+      vec2 r = vec2(
+        fbm(st + 4.0*q + vec2(1.7,9.2) + 0.15*T + mouse),
+        fbm(st + 4.0*q + vec2(8.3,2.8) + 0.126*T + mouse)
+      );
+      float f = fbm(st + 4.2*r);
+
+      // Color palette
+      // Deep teal aurora, electric cyan, gold shimmer, violet nebula
+      vec3 col = mix(
+        vec3(0.005, 0.005, 0.03),                  // deep void
+        vec3(0.0,   0.36,  0.32),                  // teal aurora
+        clamp(f*f*3.5, 0.0, 1.0)
+      );
+      col = mix(col,
+        vec3(0.0,   0.72,  0.65),                  // bright cyan
+        clamp(length(q)*1.4, 0.0, 1.0)
+      );
+      col = mix(col,
+        vec3(0.55,  0.08,  0.68),                  // violet nebula
+        clamp(r.x*r.x*0.6, 0.0, 1.0)
+      );
+      // Gold shimmer filaments
+      float gold = smoothstep(0.35, 0.6, f + r.y*0.4);
+      col = mix(col, vec3(0.72, 0.58, 0.0), gold*0.45);
+
+      // Multiply by brightness curve — keep dark center
+      col *= 0.72 + 0.55*f;
+
+      // Vignette
+      vec2 vig = uv*2.0 - 1.0;
+      col *= 1.0 - 0.55*dot(vig,vig);
+
+      // Very subtle scan-line feel
+      float scan = 0.97 + 0.03*sin(gl_FragCoord.y*1.8);
+      col *= scan;
+
+      // Overall brightness cap — keep it subtle
+      col = clamp(col * 0.78, 0.0, 1.0);
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  function compile(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)){
+      console.warn(gl.getShaderInfoLog(s));
+      return null;
+    }
+    return s;
+  }
+
+  const vs = compile(gl.VERTEX_SHADER, VS);
+  const fs = compile(gl.FRAGMENT_SHADER, FS);
+  if(!vs||!fs){ fallback(); return; }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs);
+  gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog, gl.LINK_STATUS)){ fallback(); return; }
+  gl.useProgram(prog);
+
+  // Full-screen quad
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const aPos = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+  const uT     = gl.getUniformLocation(prog, 'u_t');
+  const uRes   = gl.getUniformLocation(prog, 'u_res');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // Mouse tracking with smooth lerp
+  let mx=0.5, my=0.5, tx=0.5, ty=0.5;
+  document.addEventListener('mousemove', e=>{
+    mx = e.clientX / window.innerWidth;
+    my = 1.0 - e.clientY / window.innerHeight;
+  });
+  document.addEventListener('touchmove', e=>{
+    mx = e.touches[0].clientX / window.innerWidth;
+    my = 1.0 - e.touches[0].clientY / window.innerHeight;
+  }, {passive:true});
+
+  // Resize
+  function resize(){
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Render loop
+  let start = performance.now();
+  function render(){
+    const t = (performance.now() - start) * 0.001;
+    tx += (mx - tx) * 0.035;
+    ty += (my - ty) * 0.035;
+    gl.uniform1f(uT, t);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform2f(uMouse, tx, ty);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render();
+})();
+
+// ═══════════════════════════════════════════════════════
+//  CURSOR
+// ═══════════════════════════════════════════════════════
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
-let mx=0,my=0,tx=0,ty=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function cf(){cur.style.transform=`translate(${mx-5}px,${my-5}px)`;tx+=(mx-tx)*.1;ty+=(my-ty)*.1;curR.style.transform=`translate(${tx-16}px,${ty-16}px)`;requestAnimationFrame(cf);})();
-// REVEAL
+let mx2=0,my2=0,tx2=0,ty2=0;
+document.addEventListener('mousemove',e=>{mx2=e.clientX;my2=e.clientY;});
+(function cf(){cur.style.transform=`translate(${mx2-5}px,${my2-5}px)`;tx2+=(mx2-tx2)*.1;ty2+=(my2-ty2)*.1;curR.style.transform=`translate(${tx2-16}px,${ty2-16}px)`;requestAnimationFrame(cf);})();
+
+// ═══════════════════════════════════════════════════════
+//  SCROLL REVEAL
+// ═══════════════════════════════════════════════════════
 const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
 document.querySelectorAll('.rv,.rvl').forEach(r=>ro.observe(r));
 document.querySelectorAll('.proj,.ach,.sk-block').forEach((el,i)=>{el.style.transitionDelay=`${i*.07}s`;});
-// COUNT
-function animN(el,target,suf,isF){let v=0;const inc=target/(1600/16);const t=setInterval(()=>{v+=inc;if(v>=target){v=target;clearInterval(t);}el.textContent=(isF?v.toFixed(1):Math.floor(v))+suf;},16);}
 
-// ── HEATMAP GENERATOR ──
-function buildHeatmap(totalSubs){
+// ═══════════════════════════════════════════════════════
+//  ANIMATED NUMBER COUNTER
+// ═══════════════════════════════════════════════════════
+function animN(el,target,suf,isF){
+  let v=0;const inc=target/(1600/16);
+  const t=setInterval(()=>{v+=inc;if(v>=target){v=target;clearInterval(t);}el.textContent=(isF?v.toFixed(1):Math.floor(v))+suf;},16);
+}
+
+// ═══════════════════════════════════════════════════════
+//  HEATMAP
+// ═══════════════════════════════════════════════════════
+function buildHeatmap(){
   const grid=document.getElementById('heatmap');
   if(!grid)return;
   const weeks=52;
-  // Generate a realistic activity pattern
   const cells=[];
   for(let w=0;w<weeks;w++){
     for(let d=0;d<7;d++){
-      // weight later weeks higher (recent activity)
       const recency=w/weeks;
       const p=Math.random();
       let lvl=0;
@@ -777,34 +906,30 @@ function buildHeatmap(totalSubs){
   }
 }
 
-// ── DONUT ARC UPDATE ──
+// ═══════════════════════════════════════════════════════
+//  DONUT ARCS
+// ═══════════════════════════════════════════════════════
 function setArcs(easy,med,hard,total){
-  const R=65,C=2*Math.PI*R; // circumference ~408.41
+  const R=65,C=2*Math.PI*R;
   const eP=(easy/total)*C, mP=(med/total)*C, hP=(hard/total)*C;
-  const arcE=document.getElementById('arc-easy');
-  const arcM=document.getElementById('arc-med');
-  const arcH=document.getElementById('arc-hard');
   setTimeout(()=>{
-    // Easy: starts at 0
-    arcE.style.strokeDasharray=`${eP} ${C-eP}`;
-    arcE.style.strokeDashoffset='0';
-    // Med: offset after easy
-    arcM.style.strokeDasharray=`${mP} ${C-mP}`;
-    arcM.style.strokeDashoffset=`${-eP}`;
-    // Hard: offset after easy+med
-    arcH.style.strokeDasharray=`${hP} ${C-hP}`;
-    arcH.style.strokeDashoffset=`${-(eP+mP)}`;
+    const arcE=document.getElementById('arc-easy');
+    const arcM=document.getElementById('arc-med');
+    const arcH=document.getElementById('arc-hard');
+    arcE.style.strokeDasharray=`${eP} ${C-eP}`;arcE.style.strokeDashoffset='0';
+    arcM.style.strokeDasharray=`${mP} ${C-mP}`;arcM.style.strokeDashoffset=`${-eP}`;
+    arcH.style.strokeDasharray=`${hP} ${C-hP}`;arcH.style.strokeDashoffset=`${-(eP+mP)}`;
   },300);
 }
 
-// ── KNOWN CORRECT STATS (from screenshot) ──
+// ═══════════════════════════════════════════════════════
+//  LEETCODE LIVE FETCH
+// ═══════════════════════════════════════════════════════
 const KNOWN={totalSolved:616,easySolved:316,mediumSolved:276,hardSolved:24,totalEasy:930,totalMedium:2022,totalHard:913,ranking:115116,totalSubmissions:1100};
 
-// ── RENDER LEETCODE ──
 function renderLC(d){
   document.getElementById('lc-spin').style.display='none';
   document.getElementById('lc-data').style.display='block';
-
   const tot=d.totalSolved||KNOWN.totalSolved;
   const e=d.easySolved||KNOWN.easySolved;
   const m=d.mediumSolved||KNOWN.mediumSolved;
@@ -813,8 +938,6 @@ function renderLC(d){
   const tM=d.totalMedium||KNOWN.totalMedium;
   const tH=d.totalHard||KNOWN.totalHard;
   const rank=d.ranking||KNOWN.ranking;
-
-  // Donut + counts
   animN(document.getElementById('donut-num'),tot,'',false);
   animN(document.getElementById('lc-mini'),tot,'',false);
   document.getElementById('donut-total').textContent=`of ${tE+tM+tH}`;
@@ -825,21 +948,16 @@ function renderLC(d){
   document.getElementById('lc-mf').textContent=`${m} / ${tM}`;
   document.getElementById('lc-hf').textContent=`${h} / ${tH}`;
   document.getElementById('lc-rank').textContent=`#${rank.toLocaleString()}`;
-
-  // Bars
   setTimeout(()=>{
     document.getElementById('eb').style.width=`${Math.min((e/tE)*100,100)}%`;
     document.getElementById('mb').style.width=`${Math.min((m/tM)*100,100)}%`;
     document.getElementById('hb').style.width=`${Math.min((h/tH)*100,100)}%`;
   },200);
-
   setArcs(e,m,h,tot);
-  buildHeatmap(d.totalSubmissions||1100);
-
+  buildHeatmap();
   if(d.isFallback) document.getElementById('lc-fallback-note').style.display='block';
 }
 
-// ── LIVE FETCH ──
 async function fetchLC(){
   const u='Sukhreet-kaur';
   const apis=[
